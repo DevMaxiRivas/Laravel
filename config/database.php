@@ -16,6 +16,7 @@ return [
     |
     */
 
+    // Esta linea me indica que la base de datos por defecto es sqlite
     'default' => env('DB_CONNECTION', 'sqlite'),
 
     /*
@@ -147,7 +148,7 @@ return [
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
-            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
+            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_') . '_database_'),
         ],
 
         'default' => [

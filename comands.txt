@@ -1,0 +1,40 @@
+php artisan make:controller [Nombre del Controlador]
+routes => web.php == urls.py django
+Http/Controlers Controller == funciones de vistas por modelos
+
+Creacion de Componentes via consola
+php artisan make:component alert2
+
+archivo database.php
+Configuramos la conexion con la base de datos
+
+migraciones 
+realiza las migraciones en la base de datos
+php artisan migrate
+
+en cada archivo en database -> Migrate se cada clase tiene dos metodos
+up y down 
+up define lo que se va a hacer con esa migraciones
+down seria el rollback (volver a antes de la migracion), para hacerlo
+php artisan migrate:rollback
+
+Supongamos que queremos crear una tabla en la base de datos mediante una migracion
+php artisan make:migration create_[nombre-tabla]_table
+
+Para cambiar algo en la tabla
+php artisan make:migration add_[columna]_to_[nombreTabla]_table
+
+Crear Modelos en Laravel
+php artisan make:model Post
+Ver en app -> Models
+
+Seeders archivos php que ejecutan codigo al migrar nuevas tablas
+php artisan migrate:fresh --seed
+fresh elimina todas las migraciones y las vuelve a crear
+--seed : ejecuta los seeders
+
+Factories - Fabricas
+Si utilizamos factories en los seeders podremos obtener con la
+libreria fake una carga de tuplas para la BD aleatoria
+
+php artisan make:factory PostFactory
