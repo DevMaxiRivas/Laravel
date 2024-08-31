@@ -38,3 +38,13 @@ Si utilizamos factories en los seeders podremos obtener con la
 libreria fake una carga de tuplas para la BD aleatoria
 
 php artisan make:factory PostFactory
+
+En temas de paginacion de registros
+Por defecto laravel utiliza tailwind si se requiere cambiar a
+bootstrap se puede hacer modificando el metodo boot en
+app\Providers\AppServiceProvider.php
+
+use Illuminate\Contracts\Pagination\Paginator;
+boot(){
+    Paginator::useBootstrap();
+}

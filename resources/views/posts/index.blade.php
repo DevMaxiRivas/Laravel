@@ -5,10 +5,13 @@
 @section('content')
 
     <h1>Aqui se mostraran los posts</h1>
+    <a href="{{ route('posts.create') }}">Crear nuevo post</a>
     <ul>
         @foreach ($posts as $post)
-            <li><a href="posts/{{ $post->id }}">{{ $post->title }}</a></li>
+            <li><a href="{{ route('posts.show', $post) }}">{{ $post->title }}</a></li>
         @endforeach
     </ul>
+
+    {{ $posts->links() }}
 
 @endsection

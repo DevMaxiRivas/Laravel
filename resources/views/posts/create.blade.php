@@ -1,15 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layout.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Laravel | Create</title>
-</head>
+@section('title', 'Create Post')
 
-<body>
+@section('content')
     <h1>Este es el formulario para cargar un nuevo post</h1>
-</body>
-
-</html>
+    <form action="/posts" method="POST">
+        @csrf
+        <label for="title">
+            Titulo:
+            <input type="text" name="title" id="title">
+        </label>
+        <br>
+        <label for="category">
+            Categoría:
+            <input type="text" name="category" id="category">
+        </label>
+        <br>
+        <label for="content">
+            Contenido:
+            <textarea name="content" id="content" cols="30" rows="10"></textarea>
+        </label>
+        <br>
+        <input type="submit" value="Enviar">
+    </form>
+@endsection
