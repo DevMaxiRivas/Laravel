@@ -34,6 +34,11 @@ class Post extends Model
         );
     }
 
+    // Utilizacion de identificadores en los enlaces
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
     // Casting de atributos
     // Laravel cuando obtiene los datos de la base de datos los convierte en Strings

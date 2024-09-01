@@ -7,21 +7,42 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class);
 
-Route::get('/posts', [PostController::class, 'index'])
-    ->name('posts.index');
-Route::get('/posts/create', [PostController::class, 'create'])
-    ->name('posts.create');
-Route::post('/posts', [PostController::class, 'store'])
-    ->name('posts.store');
-Route::get('/posts/{post}', [PostController::class, 'show'])
-    ->name('posts.show');
+// Estas lineas son equivalentes a lo que hace resource
+// Route::get('/posts', [PostController::class, 'index'])
+//     ->name('posts.index');
+// Route::get('/posts/create', [PostController::class, 'create'])
+//     ->name('posts.create');
+// Route::post('/posts', [PostController::class, 'store'])
+//     ->name('posts.store');
+// Route::get('/posts/{post}', [PostController::class, 'show'])
+//     ->name('posts.show');
 
-Route::get('posts/{post}/edit', [PostController::class, 'edit'])
-    ->name('posts.edit');
-Route::put('posts/{post}', [PostController::class, 'update'])
-    ->name('posts.update');
-Route::delete('posts/{post}', [PostController::class, 'destroy'])
-    ->name('posts.destroy');
+// Route::get('posts/{post}/edit', [PostController::class, 'edit'])
+//     ->name('posts.edit');
+// Route::put('posts/{post}', [PostController::class, 'update'])
+//     ->name('posts.update');
+// Route::delete('posts/{post}', [PostController::class, 'destroy'])
+//     ->name('posts.destroy');
+
+// Ahorro de Lineas de Codigo
+Route::resource('posts', PostController::class)
+    // Metodos
+    // Para especificar cuales rutas se quiere crear
+    // ->only(['index', 'create', 'store', 'show', 'edit', 'update', 'destroy'])
+
+    // Para especificar cuales rutas se quiere excluir
+    // ->except(['destroy'])
+
+    // Para renombrar url al principio de las rutas "posts"/{post}/edit
+    // ->names('posts')
+
+    // Para especificar el nombre del parametro de cada metodo en el controlador
+    // ->parameter('post', 'post')
+;
+
+// Ahorro de Lineas de Codigo para API
+// Route::apiResource('posts', PostController::class);
+
 
 Route::get('/prueba', function () {
     //    Crear un nuevo Post

@@ -18,7 +18,7 @@ class PostController extends Controller
         // Muestra los segundos X registros
         // https://blog.test/posts/?page=2
 
-        $posts = Post::select('id', 'title')->orderBy('id', 'desc')->paginate(10);
+        $posts = Post::orderBy('id', 'desc')->paginate(10);
 
         return view('posts.index', compact('posts'));
     }
@@ -32,40 +32,37 @@ class PostController extends Controller
     {
         $post = new Post();
         $post->title = $request->title;
+        $post->slug = $request->slug;
         $post->content = $request->content;
         $post->category = $request->category;
         $post->save();
-        return redirect('/posts');
+        return redirect()->route('posts.index');
     }
 
-    public function show($post)
+    public function show(Post $post)
     {
-        // Obtenemos registro
-        $post = Post::find($post);
         // return view('show', ['post' => $post]);
         return view('posts.show', compact('post'));
     }
 
-    public function edit($post)
+    public function edit(Post $post)
     {
-        $post = Post::find($post);
         return view('posts.edit', compact('post'));
     }
 
-    public function update(Request $request /* $Formulario */, $post /* $id-post */)
+    public function update(Request $request /* $Formulario */, Post $post /* $id-post */)
     {
-        $post = Post::find($post);
         $post->title = $request->title;
+        $post->slug = $request->slug;
         $post->content = $request->content;
         $post->category = $request->category;
         $post->save();
-        return redirect("/posts/{$post->id}");
+        return redirect()->route('posts.show', $post);
     }
 
-    public function destroy($post)
+    public function destroy(Post $post)
     {
-        $post = Post::find($post);
         $post->delete();
-        return redirect('/posts');
+        return redirect()->route('posts.index');
     }
 }

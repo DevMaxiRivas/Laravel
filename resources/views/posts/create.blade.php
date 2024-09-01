@@ -11,6 +11,11 @@
             <input type="text" name="title" id="title">
         </label>
         <br>
+        <label for="slug">
+            Slug:
+            <input type="text" name="slug" id="slug">
+        </label>
+        <br>
         <label for="category">
             Categoría:
             <input type="text" name="category" id="category">

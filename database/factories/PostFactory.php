@@ -19,6 +19,8 @@ class PostFactory extends Factory
         return [
             // Oracion
             'title' => $this->faker->sentence(),
+            // Slug
+            'slug' => $this->faker->slug(),
             // Texto
             'content' => $this->faker->text(1000),
             // Palabra

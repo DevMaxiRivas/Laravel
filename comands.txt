@@ -48,3 +48,12 @@ use Illuminate\Contracts\Pagination\Paginator;
 boot(){
     Paginator::useBootstrap();
 }
+
+Comando para ver todas las rutas en la App
+php artisan r:l
+
+A nivel de CEO Legibilidad de la Paginas/Enlaces URL
+es recomendable usar en vez de id's los titulos de los posts (slugs)
+Por ello hay que tenerlos en cuenta en la base de datos por tanto
+Hay que modificar las migraciones y agregarle:
+$table->string('slug')->unique();
