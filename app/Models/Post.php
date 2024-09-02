@@ -47,4 +47,22 @@ class Post extends Model
     protected $casts = [
         'published_at' => 'datetime'
     ];
+
+    // Propiedad que permite especificar las columnas que se van a llenar
+    // en la base de datos utilizando el metodo create
+    // Post::create($request->all());
+    protected $fillable = [
+        'title',
+        'slug',
+        'content',
+        'category'
+    ];
+    // La propiedad $guarded permite especificar las columnas que no se van a
+    // llenar en la base de datos utilizando el metodo create
+    // Post::create($request->all());
+    // protected $guarded = [
+    //     'id',
+    //     'created_at',
+    //     'updated_at'
+    // ];
 }

@@ -30,12 +30,34 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        $post = new Post();
-        $post->title = $request->title;
-        $post->slug = $request->slug;
-        $post->content = $request->content;
-        $post->category = $request->category;
-        $post->save();
+
+        // Validaciones por defecto para los campos ingresados
+        $request->validate([
+            'title' => 'required',
+            'slug' => 'required',
+            'content' => 'required',
+            'category' => 'required'
+        ]);
+
+        // Forma larga
+        // $post = new Post();
+        // $post->title = $request->title;
+        // $post->slug = $request->slug;
+        // $post->content = $request->content;
+        // $post->category = $request->category;
+        // $post->save();
+
+        // Formas cortas
+        // Post::create([
+        //     'title' => $request->title,
+        //     'slug' => $request->slug,
+        //     'content' => $request->content,
+        //     'category' => $request->category
+        // ]);
+
+        // Forma corta utilizando propiedad fillable en el modelo
+        Post::create($request->all());
+
         return redirect()->route('posts.index');
     }
 
@@ -52,11 +74,27 @@ class PostController extends Controller
 
     public function update(Request $request /* $Formulario */, Post $post /* $id-post */)
     {
-        $post->title = $request->title;
-        $post->slug = $request->slug;
-        $post->content = $request->content;
-        $post->category = $request->category;
-        $post->save();
+
+        $request->validate([
+            // Validacion de que el titulo tenga entre 5 y 255 caracteres
+            'title' => ['required', 'min:5', 'max:255'],
+            // Validacion de que el slug no exista en otro post y que sea unico
+            // no comparando con el post que se quiere actualizar
+            'slug' => "required|unique:post,slug,{$post->id}",
+            'content' => 'required',
+            'category' => 'required'
+        ]);
+
+        // Forma larga
+        // $post->title = $request->title;
+        // $post->slug = $request->slug;
+        // $post->content = $request->content;
+        // $post->category = $request->category;
+        // $post->save();
+
+        // Forma corta
+        $post->update($request->all());
+
         return redirect()->route('posts.show', $post);
     }
 

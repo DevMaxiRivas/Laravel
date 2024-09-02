@@ -57,3 +57,8 @@ es recomendable usar en vez de id's los titulos de los posts (slugs)
 Por ello hay que tenerlos en cuenta en la base de datos por tanto
 Hay que modificar las migraciones y agregarle:
 $table->string('slug')->unique();
+
+Asignacion Masiva
+Permite utilizar el metodo Create de un modelo para crear otra
+tupla en la base de datos de acuerdo a la propiedad fillable
+definida en ese modelo
