@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePostRequest;
+use App\Mail\PostCreatedMail;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use SebastianBergmann\CodeCoverage\Driver\Selector;
 
 class PostController extends Controller
@@ -28,16 +31,19 @@ class PostController extends Controller
         return view('posts.create');
     }
 
-    public function store(Request $request)
+    public function store(/*Request "Anteriormente"*/StorePostRequest $request)
     {
+        // Validaciones por metodo HTTP
+        // Http -> Request -> StorePostRequest
 
-        // Validaciones por defecto para los campos ingresados
-        $request->validate([
-            'title' => 'required',
-            'slug' => 'required',
-            'content' => 'required',
-            'category' => 'required'
-        ]);
+        // Validaciones por defecto para los campos ingresados de manera
+        // personalizada dentro del controlador
+        // $request->validate([
+        //     'title' => 'required',
+        //     'slug' => 'required',
+        //     'content' => 'required',
+        //     'category' => 'required'
+        // ]);
 
         // Forma larga
         // $post = new Post();
@@ -57,6 +63,9 @@ class PostController extends Controller
 
         // Forma corta utilizando propiedad fillable en el modelo
         Post::create($request->all());
+
+        // Envio de correo
+        Mail::to('prueba@prueba.com')->send(new PostCreatedMail);
 
         return redirect()->route('posts.index');
     }

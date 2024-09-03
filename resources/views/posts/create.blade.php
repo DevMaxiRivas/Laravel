@@ -4,6 +4,8 @@
 
 @section('content')
     <h1>Este es el formulario para cargar un nuevo post</h1>
+    {{-- FORMA DE TRADUCCION VER EL ARCHIVO es.json --}}
+    {{ __('This is a translated message') }}
 
     {{-- Listado de errores --}}
     {{-- @if ($errors->any())

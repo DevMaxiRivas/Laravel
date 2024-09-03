@@ -62,3 +62,39 @@ Asignacion Masiva
 Permite utilizar el metodo Create de un modelo para crear otra
 tupla en la base de datos de acuerdo a la propiedad fillable
 definida en ese modelo
+
+Restricciones en formularios
+$request->validate(...)
+Utilizando restricciones desde una clase externa en la carpeta
+// Http -> Request -> StorePostRequest
+Primero utilizando el siguiente Comando
+php artisan make:request StorePostRequest
+
+TRADUCCIONES - Locations
+Forma tradicional - No recomendable
+php artisan lang:publish
+
+Recomendable: Utilizar Paquetes
+Utilizamos laravel lang (Buscar en google)
+composer require laravel-lang/common
+
+Para agregar un tipo de lenguaje
+php artisan lang:add 
+
+ENVIAR MAILS
+Utilizando un visualizador de mail para obtener credenciales
+de prueba utilizamos MailTrap
+Reemplazamos las credenciales en el archivo .env
+MAIL_MAILER=smtp
+MAIL_HOST=sandbox.smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=febb4169c9f4a4
+MAIL_PASSWORD=d7e90b63585759
+
+Para póder utilizar el envio de email es necesario
+definir un archivo utilizando el siguiente comando
+php artisan make:mail [NombreDelManejador]
+Aparecera en 
+app\Mail\PostCreatedMail
+
+modificar el metodo content y crear una vista para los mails
