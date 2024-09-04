@@ -65,4 +65,12 @@ class Post extends Model
     //     'created_at',
     //     'updated_at'
     // ];
+
+    // Relaciones
+
+    public function comments()
+    {
+        // Un post puede tener muchos comentarios
+        return $this->hasMany(Comment::class);
+    }
 }

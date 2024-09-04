@@ -62,10 +62,10 @@ class PostController extends Controller
         // ]);
 
         // Forma corta utilizando propiedad fillable en el modelo
-        Post::create($request->all());
+        $post = Post::create($request->all());
 
         // Envio de correo
-        Mail::to('prueba@prueba.com')->send(new PostCreatedMail);
+        Mail::to('prueba@prueba.com')->send(new PostCreatedMail($post));
 
         return redirect()->route('posts.index');
     }

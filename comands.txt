@@ -26,6 +26,8 @@ php artisan make:migration add_[columna]_to_[nombreTabla]_table
 
 Crear Modelos en Laravel
 php artisan make:model Post
+Si queremos que se cree con la migracion
+php artisan make:model Comment -m
 Ver en app -> Models
 
 Seeders archivos php que ejecutan codigo al migrar nuevas tablas
@@ -98,3 +100,12 @@ Aparecera en
 app\Mail\PostCreatedMail
 
 modificar el metodo content y crear una vista para los mails
+php artisan make:mail [PostCreatedMail]
+
+Plantillas de email
+utilizar <x-mail::message> para definir la Plantilla
+para poder ver el codigo de la Plantilla y poder modificarlo
+utilizar el comando:
+php artisan vendor:publish --tag=laravel-mail
+Tener presente que puede ser posible que haya que modificar
+el archivo de configuracion .env

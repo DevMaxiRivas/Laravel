@@ -14,12 +14,13 @@ class PostCreatedMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $post;
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($post)
     {
-        //
+        $this->post = $post;
     }
 
     /**
@@ -30,7 +31,7 @@ class PostCreatedMail extends Mailable
     {
         return new Envelope(
             from: new Address('maximilianorivas01@gmail.com', 'Maximiliano Rivas'),
-            subject: 'Post Created Mail',
+            subject: 'Post pór publicar',
         );
     }
 
@@ -40,7 +41,10 @@ class PostCreatedMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.post-created',
+            // Definicion de Contenido por Vista
+            // view: 'emails.post-created',
+            // Definicion de contenido por plantilla
+            markdown: 'emails.post-created2',
         );
     }
 

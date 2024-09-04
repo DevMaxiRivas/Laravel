@@ -15,6 +15,7 @@
     <p>
         Se ha creado un nuevo post que necesita ser aprobado
     </p>
+    <a href="{{ route('posts.show', $post) }}">Ver Post</a>
 </body>
 
 </html>

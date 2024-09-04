@@ -44,4 +44,14 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    // Definimos el metodo que devuelve la relacion entre el modelo User y el modelo Phone
+    public function phone()
+    {
+        // En el caso de que no se sigan las siguiente convenciones
+        // pk: id, fk: id_phone
+        // Hay que especificarlas de la siguiente forma
+        // return $this->hasOne(Phone::class, 'id', 'id_phone');
+        return $this->hasOne(Phone::class);
+    }
 }
